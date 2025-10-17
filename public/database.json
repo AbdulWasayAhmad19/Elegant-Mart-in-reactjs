@@ -1,0 +1,50 @@
+{
+  "categories": [
+    { "id": 1, "name": "Fruits", "image": "https://media.istockphoto.com/id/529664572/photo/fruit-background.jpg?s=612x612&w=0&k=20&c=K7V0rVCGj8tvluXDqxJgu0AdMKF8axP0A15P-8Ksh3I=" },
+    { "id": 2, "name": "Vegetables", "image": "https://northernnester.com/wp-content/uploads/2020/10/groups-of-vegetables.jpg" },
+    { "id": 3, "name": "Spices", "image": "https://media.istockphoto.com/id/497186232/photo/indian-spices-in-wooden-trays.jpg?s=612x612&w=0&k=20&c=JXv3WFsyPZ8s21FEDQ_YexvMSeOd9r3yGWd1JY8UTrg=" },
+    { "id": 4, "name": "Beverages", "image": "https://nawon.com.vn/wp-content/uploads/2024/01/soft-drinks.jpg" },
+    { "id": 6, "name": "Snacks", "image": "https://www.foodnavigator.com/resizer/v2/YYA5QRFBPZJSXOWTS6I2DXS5WE.jpg?auth=7b1cc3ed5f1a3fde80886ece1cee605697a4deffe0196ebf10b91e99a6530976&smart=true" },
+    { "id": 8, "name": "Frozen Foods", "image": "https://www.businessoffood.in/wp-content/uploads/2024/04/FrozenFood-Co-operativeFoodStore-1.jpg" },
+    { "id": 9, "name": "Stationary", "image": "https://media.gettyimages.com/id/182060333/photo/large-assortment-of-office-supplies-on-white-backdrop.jpg?s=612x612&w=gi&k=20&c=hVwgOma9MxReFpKzm6bgL3iWYeENnVSZs93ZQBoKEpw=" },
+    { "id": 10, "name": "Household", "image": "https://media.istockphoto.com/id/478482323/photo/cleaning-product-plastic-container-for-house-clean.jpg?s=612x612&w=0&k=20&c=fsG7e9lRa2IDiY52gau9FMDea5vUTzQ5o15HQLi2XgY=" }
+],
+"products": [
+    { "id": 1, "name": "Fresh Apple", "image": "/Images/apple.png", "category": "Fruits", "unit": "1 Kg", "price": 320 },
+    { "id": 2, "name": "Bananas", "image": "/Images/banana.jpg", "category": "Fruits", "unit": "Dozen", "price": 180,"description": "Fresh ripe bananas rich in potassium and fiber." },
+    { "id": 3, "name": "Grapes", "image": "/Images/grapes.png", "category": "Fruits", "unit": "500g", "price": 220 },
+    { "id": 4, "name": "Fresh Tomato", "image": "/Images/tomatoes.png", "category": "Vegetables", "unit": "1 Kg", "price": 140 },
+    { "id": 5, "name": "Onions", "image": "/Images/onion.jpeg", "category": "Vegetables", "unit": "1 Kg", "price": 130 },
+    { "id": 6, "name": "Potatoes", "image": "/Images/potato.png", "category": "Vegetables", "unit": "1 Kg", "price": 120 },
+    { "id": 7, "name": "Carrots", "image": "/Images/carrots.jpg", "category": "Vegetables", "unit": "500g", "price": 100 },
+    { "id": 8, "name": "Red Chili Powder", "image": "/Images/red-chili.png", "category": "Spices", "unit": "100g", "price": 80 },
+    { "id": 9, "name": "Turmeric Powder", "image": "/Images/turmeric.png", "category": "Spices", "unit": "100g", "price": 70 },
+    { "id": 10, "name": "Black Pepper", "image": "/Images/products/black-pepper.png", "category": "Spices", "unit": "50g", "price": 90 },
+    { "id": 11, "name": "Coca-Cola", "image": "/Images/products/cocacola.png", "category": "Beverages", "unit": "1.5 L", "price": 180 },
+    { "id": 12, "name": "Fresh Milk", "image": "/Images/products/milk.png", "category": "Dairy & Eggs", "unit": "1 L", "price": 210 },
+    { "id": 13, "name": "Cheddar Cheese", "image": "/Images/products/cheese.png", "category": "Dairy & Eggs", "unit": "200g", "price": 350 },
+    { "id": 14, "name": "Butter", "image": "/Images/products/butter.png", "category": "Dairy & Eggs", "unit": "100g", "price": 220 },
+    { "id": 15, "name": "Lay's Chips Classic", "image": "/Images/products/lays-classic.png", "category": "Snacks", "unit": "50g", "price": 80 },
+    { "id": 16, "name": "Chocolate Cookies", "image": "/Images/products/cookies.png", "category": "Bakery", "unit": "Pack of 6", "price": 250 },
+    { "id": 17, "name": "Frozen French Fries", "image": "/Images/products/french-fries.png", "category": "Frozen Foods", "unit": "1 Kg", "price": 400 },
+    { "id": 18, "name": "Notebook (A4 Size)", "image": "/Images/products/notebook.png", "category": "Stationary", "unit": "1 piece", "price": 120 },
+    { "id": 19, "name": "Ballpoint Pen", "image": "/Images/products/pen.png", "category": "Stationary", "unit": "1 piece", "price": 50 },
+    { "id": 20, "name": "Dishwash Liquid", "image": "/Images/products/dishwash.png", "category": "Household", "unit": "500ml", "price": 180 },
+    { "id": 21, "name": "Laundry Detergent", "image": "/Images/products/detergent.png", "category": "Household", "unit": "1 Kg", "price": 350 }
+],
+"slideshow":  [
+        { "src": "/Images/slideShow pic 1.jpg", "alt": "Banner 1" },
+        { "src": "/Images/slide show pic 2.png", "alt": "Banner 2" },
+        { "src": "/Images/slide show img 3.jpg", "alt": "Banner 3" },
+        { "src": "/Images/side show img 4.jpg", "alt": "Banner 4" }
+],
+"icons": {
+  "martlogo": "/Images/martlogo.jpg",
+  "profile": "/Images/Profile icon.jpg",
+  "cart": "/Images/cart image.webp",
+  "wishlist": "/Images/wishlist.svg",
+  "home": "/Images/home.png"
+}
+}
+
+
