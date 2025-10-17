@@ -86,7 +86,7 @@ function HomePage() {
 
 
             {/* ULTRA FRESH SECTION */}
-            <div className="mx-2 md:mx-10">
+            <div className="mx-2 md:mx-10 ">
                 <img
                     src="/Images/Vegetables pic.png"
                     alt="Vegetables"
