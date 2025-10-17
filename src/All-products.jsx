@@ -30,7 +30,7 @@ function AllProducts() {
                     {products.map((product) => (
                         <div
                             key={product.id}
-                            className="group flex-none w-56 sm:w-64 md:w-64 bg-white border border-gray-200 rounded-xl p-4 shadow hover:border-[#dc3545] transition relative"
+                            className="group bg-white border border-gray-200 rounded-xl p-4 shadow hover:border-[#dc3545] transition relative"
                         >
                             {/* 🥬 Clickable Image + Info */}
                             <Link to={`/product/${product.id}`}>
