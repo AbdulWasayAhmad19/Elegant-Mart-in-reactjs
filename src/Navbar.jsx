@@ -274,65 +274,68 @@ function Navbar() {
 
 
 
-            {isDeliverOpen && (
+           {/* ✅ Search Panel (Mobile) */}
+            {isSearchOpen && (
                 <>
                     {/* Overlay */}
                     <div
-                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-                        onClick={() => setDeliverOpen(false)}
+                        className="fixed inset-0 bg-black/50 z-40"
+                        onClick={() => setSearchOpen(false)}
                     ></div>
---------------
-                    {/* Popup Panel */}
-                    <div className="fixed inset-0 flex justify-center items-center z-50 px-4">
-                        <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative">
-                            {/* Close Button */}
-                            <button
-                                onClick={() => setDeliverOpen(false)}
-                                className="absolute top-2 right-3 text-2xl text-gray-500 hover:text-[#dc3545]"
+
+                    {/* Bottom Sheet Popup */}
+                    <div
+                        className="fixed bottom-0 left-0 w-full bg-white rounded-t-2xl shadow-2xl z-50 animate-slide-up p-5"
+                        style={{
+                            height: "50vh", // half of screen height
+                        }}
+                    >
+                        {/* Drag Handle */}
+                        <div className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4"></div>
+
+                        {/* Heading */}
+                        <h2 className="text-lg font-semibold text-gray-800 mb-4 text-center">
+                            Search Products
+                        </h2>
+
+                        {/* Search Input */}
+                        <div className="relative">
+                            <input
+                                type="text"
+                                placeholder="Search for products..."
+                                className="w-full border border-gray-300 rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-[#dc3545] outline-none"
+                            />
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-5 h-5 text-gray-500 absolute left-3 top-2.5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
                             >
-                                &times;
-                            </button>
-
-                            {/* Logo */}
-                            <div className="flex justify-center mb-4">
-                                {icons.martlogo ? (
-                                    <img
-                                        src={icons.martlogo}
-                                        alt="Elegant Mart Logo"
-                                        className="h-10 md:h-12 w-auto"
-                                    />
-                                ) : (
-                                    <div className="h-10 md:h-12 w-auto bg-gray-200 rounded-md" />
-                                )}
-                            </div>
-
-
-                            {/* Heading */}
-                            <h2 className="text-lg font-bold mb-3 text-gray-800 text-center">
-                                Select Delivery Area
-                            </h2>
-
-                            {/* Dropdown */}
-                            <select
-                                className="w-full border border-gray-300 rounded-full px-4 py-2 focus:ring-2 focus:ring-[#dc3545] outline-none"
-                                defaultValue=""
-                            >
-                                <option value="">Select Area / Sub Region</option>
-                                <option value="iqbal">Iqbal Avenue Phase 3</option>
-                                <option value="lda">LDA Avenue Phase 1</option>
-                                <option value="pd">P & D</option>
-                                <option value="nespak">Nespak Society</option>
-                                <option value="izmeer">Izmeer Society</option>
-                            </select>
-
-                            {/* Save Button */}
-                            <button
-                                className="mt-4 w-full bg-[#dc3545] text-white font-semibold py-2 rounded-full hover:bg-[#b92c3a] transition-colors"
-                                onClick={() => setDeliverOpen(false)}
-                            >
-                                Save Location
-                            </button>
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"
+                                />
+                            </svg>
                         </div>
+
+                        {/* Optional — example suggestion list */}
+                        <ul className="mt-5 space-y-3 text-gray-700 overflow-y-auto max-h-40">
+                            <li className="hover:text-[#dc3545] cursor-pointer">Milk</li>
+                            <li className="hover:text-[#dc3545] cursor-pointer">Bread</li>
+                            <li className="hover:text-[#dc3545] cursor-pointer">Eggs</li>
+                            <li className="hover:text-[#dc3545] cursor-pointer">Fruits</li>
+                        </ul>
+
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setSearchOpen(false)}
+                            className="absolute top-3 right-4 text-2xl text-gray-500 hover:text-[#dc3545]"
+                        >
+                            &times;
+                        </button>
                     </div>
                 </>
             )}
