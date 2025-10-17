@@ -4,9 +4,7 @@
     { "id": 2, "name": "Vegetables", "image": "https://northernnester.com/wp-content/uploads/2020/10/groups-of-vegetables.jpg" },
     { "id": 3, "name": "Spices", "image": "https://media.istockphoto.com/id/497186232/photo/indian-spices-in-wooden-trays.jpg?s=612x612&w=0&k=20&c=JXv3WFsyPZ8s21FEDQ_YexvMSeOd9r3yGWd1JY8UTrg=" },
     { "id": 4, "name": "Beverages", "image": "https://nawon.com.vn/wp-content/uploads/2024/01/soft-drinks.jpg" },
-    { "id": 5, "name": "Dairy & Eggs", "image": "https://surl.li/hnachk" },
     { "id": 6, "name": "Snacks", "image": "https://www.foodnavigator.com/resizer/v2/YYA5QRFBPZJSXOWTS6I2DXS5WE.jpg?auth=7b1cc3ed5f1a3fde80886ece1cee605697a4deffe0196ebf10b91e99a6530976&smart=true" },
-    { "id": 7, "name": "Bakery", "image": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Bakery_products.jpg" },
     { "id": 8, "name": "Frozen Foods", "image": "https://www.businessoffood.in/wp-content/uploads/2024/04/FrozenFood-Co-operativeFoodStore-1.jpg" },
     { "id": 9, "name": "Stationary", "image": "https://media.gettyimages.com/id/182060333/photo/large-assortment-of-office-supplies-on-white-backdrop.jpg?s=612x612&w=gi&k=20&c=hVwgOma9MxReFpKzm6bgL3iWYeENnVSZs93ZQBoKEpw=" },
     { "id": 10, "name": "Household", "image": "https://media.istockphoto.com/id/478482323/photo/cleaning-product-plastic-container-for-house-clean.jpg?s=612x612&w=0&k=20&c=fsG7e9lRa2IDiY52gau9FMDea5vUTzQ5o15HQLi2XgY=" }

@@ -30,7 +30,7 @@ export default function Login() {
                 {/* Logo + Heading */}
                 <div className="text-center mb-6">
                     <img
-                        src="src/assets/Images/martlogo.jpg"
+                        src="/Images/martlogo.jpg"
                         alt="Elegant Mart Logo"
                         className="w-28 mx-auto mb-4"
                     />
