@@ -127,32 +127,36 @@ function ProductPage() {
                 <section className="mt-12">
                     <h2 className="text-lg sm:text-xl font-bold mb-6">Related Products</h2>
 
-                    <div className="flex overflow-x-auto gap-4 rounded-lg bg-white p-4 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    <div className="flex overflow-x-auto gap-3 sm:gap-4 md:gap-5 rounded-lg bg-white p-4 sm:p-6 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                         {relatedProducts.map((item) => (
                             <div
                                 key={item.id}
-                                className="group flex-none w-56 sm:w-64 md:w-64 bg-white border border-gray-200 rounded-xl p-4 shadow hover:border-[#dc3545] transition relative"
+                                className="group flex-none w-40 sm:w-48 md:w-56 bg-white border border-gray-200 rounded-xl p-3 sm:p-4 shadow-sm hover:shadow-md hover:border-[#dc3545] transition-all relative"
                             >
                                 <Link to={`/product/${item.id}`}>
                                     <img
                                         src={item.image}
                                         alt={item.name}
-                                        className="w-full h-36 sm:h-40 object-contain rounded-lg"
+                                        className="w-full h-36 sm:h-44 md:h-48 object-contain rounded-md mb-2 sm:mb-3 transition-transform duration-200 group-hover:scale-105"
                                     />
-                                    <p className="text-center mt-2 font-medium">{item.name}</p>
-                                    <p className="my-1 text-gray-500 text-xs">{item.unit}</p>
+                                    <p className="text-center mt-1 font-medium text-sm sm:text-base md:text-lg text-gray-800 hover:text-[#dc3545] transition">
+                                        {item.name}
+                                    </p>
+                                    <p className="text-center text-gray-500 text-xs sm:text-sm mb-2 sm:mb-3">
+                                        {item.unit}
+                                    </p>
                                 </Link>
 
-                                <div className="flex justify-between items-center">
-                                    <span className="font-semibold">Rs {item.price}</span>
+                                <div className="flex justify-between items-center mt-1">
+                                    <span className="font-semibold text-sm sm:text-base text-gray-800">
+                                        Rs {item.price}
+                                    </span>
 
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex items-center gap-2 sm:gap-3">
                                         {/* ❤️ Wishlist Icon */}
                                         <button
                                             onClick={() => {
-                                                const isInWishlist = wishlist.some(
-                                                    (w) => w.id === item.id
-                                                );
+                                                const isInWishlist = wishlist.some((w) => w.id === item.id);
                                                 if (isInWishlist) {
                                                     removeFromWishlist(item.id);
                                                 } else {
@@ -160,21 +164,17 @@ function ProductPage() {
                                                 }
                                             }}
                                             className={`transition ${wishlist.some((w) => w.id === item.id)
-                                                    ? "text-[#dc3545]"
-                                                    : "text-gray-400 hover:text-[#dc3545]"
+                                                ? "text-[#dc3545]"
+                                                : "text-gray-400 hover:text-[#dc3545]"
                                                 }`}
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                fill={
-                                                    wishlist.some((w) => w.id === item.id)
-                                                        ? "#dc3545"
-                                                        : "none"
-                                                }
+                                                fill={wishlist.some((w) => w.id === item.id) ? "#dc3545" : "none"}
                                                 viewBox="0 0 24 24"
                                                 strokeWidth={1.8}
                                                 stroke="currentColor"
-                                                className="w-5 h-5 hover:scale-110 transition-transform"
+                                                className="w-5 h-5 sm:w-6 sm:h-6 hover:scale-110 transition-transform"
                                             >
                                                 <path
                                                     strokeLinecap="round"
@@ -189,7 +189,7 @@ function ProductPage() {
                                             <img
                                                 src="/Images/add-to-cart.png"
                                                 alt="Add to Cart"
-                                                className="w-6 opacity-70 group-hover:opacity-100 hover:scale-110 transition-transform"
+                                                className="w-5 sm:w-6 hover:scale-110 transition-transform"
                                             />
                                         </button>
                                     </div>
@@ -199,6 +199,7 @@ function ProductPage() {
                     </div>
                 </section>
             )}
+
 
         </main>
     );

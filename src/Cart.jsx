@@ -155,34 +155,34 @@ function Cart() {
                     </div>
 
                     <section className="mt-12">
-                        <div className="flex overflow-x-auto gap-6 rounded-lg bg-white p-6 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                        <div className="flex overflow-x-auto gap-3 sm:gap-4 md:gap-5 rounded-lg bg-white p-4 sm:p-6 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                             {relatedProducts.map((product) => (
                                 <div
                                     key={product.id}
-                                    className="group flex-none w-56 sm:w-64 md:w-64 bg-white border border-gray-200 rounded-xl p-4 shadow hover:border-[#dc3545] transition relative"
+                                    className="group flex-none w-40 sm:w-48 md:w-56 bg-white border border-gray-200 rounded-xl p-3 sm:p-4 shadow-sm hover:shadow-md hover:border-[#dc3545] transition-all relative"
                                 >
                                     {/* 🥬 Clickable Image + Info */}
                                     <Link to={`/product/${product.id}`}>
                                         <img
                                             src={product.image}
                                             alt={product.name}
-                                            className="w-full h-44 sm:h-52 object-contain rounded-lg mb-3 transition-transform duration-200 group-hover:scale-105"
+                                            className="w-full h-36 sm:h-44 md:h-48 object-contain rounded-md mb-2 sm:mb-3 transition-transform duration-200 group-hover:scale-105"
                                         />
-                                        <p className="text-center mt-2 font-semibold text-base sm:text-lg hover:text-[#dc3545] transition">
+                                        <p className="text-center mt-1 font-semibold text-sm sm:text-base md:text-lg text-gray-800 hover:text-[#dc3545] transition">
                                             {product.name}
                                         </p>
-                                        <p className="text-center text-gray-500 text-sm mb-3">
+                                        <p className="text-center text-gray-500 text-xs sm:text-sm mb-2 sm:mb-3">
                                             {product.unit}
                                         </p>
                                     </Link>
 
                                     {/* 💰 Price + Icons */}
-                                    <div className="flex justify-between items-center">
-                                        <span className="font-bold text-lg text-gray-800">
+                                    <div className="flex justify-between items-center mt-1">
+                                        <span className="font-bold text-sm sm:text-base text-gray-800">
                                             Rs {product.price}
                                         </span>
 
-                                        <div className="flex items-center gap-3">
+                                        <div className="flex items-center gap-2 sm:gap-3">
                                             {/* ❤️ Wishlist Icon */}
                                             <button
                                                 onClick={() => addToWishlist(product)}
@@ -194,7 +194,7 @@ function Cart() {
                                                     viewBox="0 0 24 24"
                                                     strokeWidth={1.8}
                                                     stroke="currentColor"
-                                                    className="w-6 h-6 hover:fill-[#dc3545] hover:stroke-[#dc3545]"
+                                                    className="w-5 h-5 sm:w-6 sm:h-6 hover:fill-[#dc3545] hover:stroke-[#dc3545] transition"
                                                 >
                                                     <path
                                                         strokeLinecap="round"
@@ -205,13 +205,11 @@ function Cart() {
                                             </button>
 
                                             {/* 🛒 Add to Cart Icon */}
-                                            <button
-                                                onClick={() => addToCart({ ...product, quantity: 1 })}
-                                            >
+                                            <button onClick={() => addToCart({ ...product, quantity: 1 })}>
                                                 <img
                                                     src="/Images/add-to-cart.png"
                                                     alt="Add to cart"
-                                                    className="w-7 hover:scale-110 transition-transform"
+                                                    className="w-5 sm:w-6 hover:scale-110 transition-transform"
                                                 />
                                             </button>
                                         </div>
@@ -220,6 +218,7 @@ function Cart() {
                             ))}
                         </div>
                     </section>
+
                 </div>
             )}
 

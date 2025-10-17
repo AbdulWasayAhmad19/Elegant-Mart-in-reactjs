@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useWishlist } from "./context/WishlistContext";
@@ -26,34 +25,34 @@ function AllProducts() {
                 </h1>
 
                 {/* Product Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5">
                     {products.map((product) => (
                         <div
                             key={product.id}
-                            className="group bg-white border border-gray-200 rounded-xl p-4 shadow hover:border-[#dc3545] transition relative"
+                            className="group bg-white border border-gray-200 rounded-xl p-3 sm:p-4 shadow-sm hover:shadow-md hover:border-[#dc3545] transition-all relative"
                         >
                             {/* 🥬 Clickable Image + Info */}
                             <Link to={`/product/${product.id}`}>
                                 <img
                                     src={product.image}
                                     alt={product.name}
-                                    className="w-full h-44 sm:h-52 object-contain rounded-lg mb-3 transition-transform duration-200 group-hover:scale-105"
+                                    className="w-full h-36 sm:h-44 md:h-48 object-contain rounded-md mb-2 sm:mb-3 transition-transform duration-200 group-hover:scale-105"
                                 />
-                                <p className="text-center mt-2 font-semibold text-base sm:text-lg hover:text-[#dc3545] transition">
+                                <p className="text-center mt-1 font-semibold text-sm sm:text-base md:text-lg text-gray-800 hover:text-[#dc3545] transition">
                                     {product.name}
                                 </p>
-                                <p className="text-center text-gray-500 text-sm mb-3">
+                                <p className="text-center text-gray-500 text-xs sm:text-sm mb-2 sm:mb-3">
                                     {product.size || product.unit}
                                 </p>
                             </Link>
 
                             {/* 💰 Price + Icons */}
-                            <div className="flex justify-between items-center mt-2">
-                                <span className="font-bold text-lg text-gray-800">
+                            <div className="flex justify-between items-center mt-1">
+                                <span className="font-bold text-sm sm:text-base text-gray-800">
                                     Rs {product.price}
                                 </span>
 
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-2 sm:gap-3">
                                     {/* ❤️ Wishlist Icon */}
                                     <button
                                         onClick={() => {
@@ -81,7 +80,7 @@ function AllProducts() {
                                             viewBox="0 0 24 24"
                                             strokeWidth={1.8}
                                             stroke="currentColor"
-                                            className="w-6 h-6 hover:scale-110 transition-transform"
+                                            className="w-5 h-5 sm:w-6 sm:h-6 hover:scale-110 transition-transform"
                                         >
                                             <path
                                                 strokeLinecap="round"
@@ -95,7 +94,7 @@ function AllProducts() {
                                     <button onClick={() => addToCart(product)}>
                                         <img
                                             src="/Images/add-to-cart.png"
-                                            className="w-7 hover:scale-110 transition-transform"
+                                            className="w-5 sm:w-6 hover:scale-110 transition-transform"
                                             alt="Add to cart"
                                         />
                                     </button>
@@ -110,3 +109,4 @@ function AllProducts() {
 }
 
 export default AllProducts;
+
