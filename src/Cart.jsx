@@ -16,11 +16,26 @@ function Cart() {
             .then((res) => res.json())
             .then((data) => {
                 setDatabase(data);
-                // Adjust to match your structure — e.g., data.relatedProducts or a fallback
-                setRelatedProducts(data.relatedProducts || data.products?.slice(0, 4) || []);
+
+                // ✅ If there are items in the cart, filter related products by category
+                if (cart.length > 0) {
+                    const cartCategories = cart.map((item) => item.category);
+
+                    const filtered = data.products.filter(
+                        (product) =>
+                            cartCategories.includes(product.category) &&
+                            !cart.some((c) => c.id === product.id)
+                    );
+
+                    setRelatedProducts(filtered.slice(0, 8)); // limit to 8
+                } else {
+                    // fallback if cart is empty
+                    setRelatedProducts(data.products.slice(0, 8));
+                }
             })
             .catch((err) => console.error("Error loading products:", err));
-    }, []);
+    }, [cart]);
+
 
     // Wait for database to load
     if (!database) {

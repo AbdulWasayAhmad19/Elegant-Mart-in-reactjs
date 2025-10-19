@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useWishlist } from "./context/WishlistContext";
 import { useCart } from "./context/CartContext";
@@ -15,11 +16,26 @@ function Wishlist() {
       .then((res) => res.json())
       .then((data) => {
         setDatabase(data);
-        // You can choose related products however you want — here we just pick the first 8
         setRelatedProducts(data.products.slice(0, 8));
       })
       .catch((err) => console.error("Error loading database.json:", err));
   }, []);
+
+  // ✅ Filter related products to exclude items already in wishlist
+  useEffect(() => {
+    if (!database) return;
+    // ✅ Get the categories of items currently in the wishlist
+    const wishlistCategories = wishlist.map((w) => w.category);
+
+    // ✅ Filter products that match those categories but aren’t in the wishlist
+    const filtered = database.products.filter(
+      (item) =>
+        wishlistCategories.includes(item.category) &&
+        !wishlist.some((w) => w.id === item.id)
+    );
+
+    setRelatedProducts(filtered.slice(0, 8)); // limit to 8
+  }, [database, wishlist]);
 
   // ⏳ Loading state
   if (!database) {
@@ -111,35 +127,37 @@ function Wishlist() {
       </div>
 
       {/* Related Products */}
-      <div className="mt-10 pb-10">
-        <h3 className="text-xl font-semibold mb-4 text-[#dc3545]">Related Products</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-          {relatedProducts.map((item) => (
-            <div
-              key={item.id}
-              className="group bg-white border border-gray-200 rounded-xl p-4 shadow hover:border-[#dc3545] transition"
-            >
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-full h-40 sm:h-48 object-contain mb-3 rounded-lg"
-              />
-              <p className="text-center mt-1 font-semibold text-base sm:text-lg">{item.name}</p>
-              <p className="text-center text-gray-500 text-sm mb-3">{item.unit}</p>
-              <div className="flex justify-between items-center">
-                <span className="font-bold text-lg text-gray-800">Rs {item.price}</span>
-                <button onClick={() => addToCart({ ...item, quantity: 1 })}>
-                  <img
-                    src={database.icons?.cart || "/Images/add-to-cart.png"}
-                    alt="Add to cart"
-                    className="w-7 hover:scale-110 transition-transform"
-                  />
-                </button>
+      {relatedProducts.length > 0 && (
+        <div className="mt-10 pb-10">
+          <h3 className="text-xl font-semibold mb-4 text-[#dc3545]">Related Products</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {relatedProducts.map((item) => (
+              <div
+                key={item.id}
+                className="group bg-white border border-gray-200 rounded-xl p-4 shadow hover:border-[#dc3545] transition"
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-40 sm:h-48 object-contain mb-3 rounded-lg"
+                />
+                <p className="text-center mt-1 font-semibold text-base sm:text-lg">{item.name}</p>
+                <p className="text-center text-gray-500 text-sm mb-3">{item.unit}</p>
+                <div className="flex justify-between items-center">
+                  <span className="font-bold text-lg text-gray-800">Rs {item.price}</span>
+                  <button onClick={() => addToCart({ ...item, quantity: 1 })}>
+                    <img
+                      src={database.icons?.cart || "/Images/add-to-cart.png"}
+                      alt="Add to cart"
+                      className="w-7 hover:scale-110 transition-transform"
+                    />
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

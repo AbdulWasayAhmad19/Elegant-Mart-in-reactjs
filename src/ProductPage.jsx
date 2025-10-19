@@ -122,7 +122,7 @@ function ProductPage() {
                 </div>
             </div>
 
-            {/* Related Products */}
+            Related Products
             {relatedProducts.length > 0 && (
                 <section className="mt-12">
                     <h2 className="text-lg sm:text-xl font-bold mb-6">Related Products</h2>

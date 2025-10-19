@@ -1,37 +1,252 @@
 {
-  "categories": [
-    { "id": 1, "name": "Fruits", "image": "/Images/fruits.jpg" },
-    { "id": 2, "name": "Vegetables", "image": "/Images/vegetables.jpg" },
-    { "id": 3, "name": "Spices", "image": "/Images/spices.jpg" },
-    { "id": 4, "name": "Beverages", "image": "/Images/beverages.jpg" },
-    { "id": 6, "name": "Snacks", "image": "/Images/snacks.jpg" },
-    { "id": 8, "name": "Frozen Foods", "image": "/Images/frozen food.jpg" },
-    { "id": 9, "name": "Stationary", "image": "https://media.gettyimages.com/id/182060333/photo/large-assortment-of-office-supplies-on-white-backdrop.jpg?s=612x612&w=gi&k=20&c=hVwgOma9MxReFpKzm6bgL3iWYeENnVSZs93ZQBoKEpw=" },
-    { "id": 10, "name": "Household", "image": "/Images/household.jpg" }
-],
-"products": [
-    { "id": 1, "name": "Fresh Apple", "image": "/Images/apple.png", "category": "Fruits", "unit": "1 Kg", "price": 320 },
-    { "id": 2, "name": "Bananas", "image": "/Images/banana.jpg", "category": "Fruits", "unit": "Dozen", "price": 180,"description": "Fresh ripe bananas rich in potassium and fiber." },
-    { "id": 3, "name": "Grapes", "image": "/Images/grapes.png", "category": "Fruits", "unit": "500g", "price": 220 },
-    { "id": 4, "name": "Fresh Tomato", "image": "/Images/tomatoes.png", "category": "Vegetables", "unit": "1 Kg", "price": 140 },
-    { "id": 5, "name": "Onions", "image": "/Images/onion.jpeg", "category": "Vegetables", "unit": "1 Kg", "price": 130 },
-    { "id": 6, "name": "Potatoes", "image": "/Images/potato.png", "category": "Vegetables", "unit": "1 Kg", "price": 120 },
-    { "id": 7, "name": "Carrots", "image": "/Images/carrots.jpg", "category": "Vegetables", "unit": "500g", "price": 100 },
-    { "id": 8, "name": "Red Chili Powder", "image": "/Images/red-chili.png", "category": "Spices", "unit": "100g", "price": 80 },
-    { "id": 9, "name": "Turmeric Powder", "image": "/Images/turmeric.png", "category": "Spices", "unit": "100g", "price": 70 },
-    { "id": 10, "name": "Black Pepper", "image": "/Images/products/black-pepper.png", "category": "Spices", "unit": "50g", "price": 90 },
-    { "id": 11, "name": "Coca-Cola", "image": "/Images/products/cocacola.png", "category": "Beverages", "unit": "1.5 L", "price": 180 },
-    { "id": 12, "name": "Fresh Milk", "image": "/Images/products/milk.png", "category": "Dairy & Eggs", "unit": "1 L", "price": 210 },
-    { "id": 13, "name": "Cheddar Cheese", "image": "/Images/products/cheese.png", "category": "Dairy & Eggs", "unit": "200g", "price": 350 },
-    { "id": 14, "name": "Butter", "image": "/Images/products/butter.png", "category": "Dairy & Eggs", "unit": "100g", "price": 220 },
-    { "id": 15, "name": "Lay's Chips Classic", "image": "/Images/products/lays-classic.png", "category": "Snacks", "unit": "50g", "price": 80 },
-    { "id": 16, "name": "Chocolate Cookies", "image": "/Images/products/cookies.png", "category": "Bakery", "unit": "Pack of 6", "price": 250 },
-    { "id": 17, "name": "Frozen French Fries", "image": "/Images/products/french-fries.png", "category": "Frozen Foods", "unit": "1 Kg", "price": 400 },
-    { "id": 18, "name": "Notebook (A4 Size)", "image": "/Images/products/notebook.png", "category": "Stationary", "unit": "1 piece", "price": 120 },
-    { "id": 19, "name": "Ballpoint Pen", "image": "/Images/products/pen.png", "category": "Stationary", "unit": "1 piece", "price": 50 },
-    { "id": 20, "name": "Dishwash Liquid", "image": "/Images/products/dishwash.png", "category": "Household", "unit": "500ml", "price": 180 },
-    { "id": 21, "name": "Laundry Detergent", "image": "/Images/products/detergent.png", "category": "Household", "unit": "1 Kg", "price": 350 }
-],
+   "categories": [
+    {
+      "id": 1,
+      "name": "Fruits & Vegetables",
+      "image": "/Images/fruits-vegetables.jpg",
+      "banner": "/Images/fruits and vegetables banner.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Spices",
+      "image": "/Images/spices.jpg",
+      "banner": "/Images/spices-banner.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Beverages",
+      "image": "/Images/beverages.jpg",
+      "banner": "/Images/beverages banner.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Dairy & Eggs",
+      "image": "/Images/dairy-eggs.jpg",
+      "banner": "/Images/dairy-eggs-banner.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Snacks",
+      "image": "/Images/snacks.jpg",
+      "banner": "/Images/snacks-banner.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Frozen Foods",
+      "image": "/Images/frozen food.jpg",
+      "banner": "/Images/frozen-foods-banner.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Stationary",
+      "image": "https://media.gettyimages.com/id/182060333/photo/large-assortment-of-office-supplies-on-white-backdrop.jpg?s=612x612&w=gi&k=20&c=hVwgOma9MxReFpKzm6bgL3iWYeENnVSZs93ZQBoKEpw=",
+      "banner": "/Images/stationary banner.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Household",
+      "image": "/Images/household.jpg",
+      "banner": "/Images/household-banner.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Bakery",
+      "image": "/Images/bakery.jpg",
+      "banner": "/Images/bakery-banner.jpg"
+    }
+  ],
+
+  "products": [
+    {
+      "id": 1,
+      "name": "Fresh Apple",
+      "image": "/Images/apple.png",
+      "category": "Fruits & Vegetables",
+      "unit": "1 Kg",
+      "price": 320,
+      "description": "Crisp, juicy apples packed with natural sweetness and vitamins — perfect for snacking or juicing."
+    },
+    {
+      "id": 2,
+      "name": "Bananas",
+      "image": "/Images/banana.jpg",
+      "category": "Fruits & Vegetables",
+      "unit": "Dozen",
+      "price": 180,
+      "description": "Fresh, ripe bananas rich in potassium and fiber — a healthy, energy-boosting snack."
+    },
+    {
+      "id": 3,
+      "name": "Grapes",
+      "image": "/Images/grapes.png",
+      "category": "Fruits & Vegetables",
+      "unit": "500g",
+      "price": 220,
+      "description": "Sweet and seedless grapes, perfect for snacking, desserts, or fruit salads."
+    },
+    {
+      "id": 4,
+      "name": "Fresh Tomato",
+      "image": "/Images/tomatoes.png",
+      "category": "Fruits & Vegetables",
+      "unit": "1 Kg",
+      "price": 140,
+      "description": "Juicy red tomatoes full of flavor — ideal for salads, cooking, and sauces."
+    },
+    {
+      "id": 5,
+      "name": "Onions",
+      "image": "/Images/onion.jpeg",
+      "category": "Fruits & Vegetables",
+      "unit": "1 Kg",
+      "price": 130,
+      "description": "Fresh onions with a rich, bold flavor — a kitchen essential for every meal."
+    },
+    {
+      "id": 6,
+      "name": "Potatoes",
+      "image": "/Images/potato.png",
+      "category": "Fruits & Vegetables",
+      "unit": "1 Kg",
+      "price": 120,
+      "description": "High-quality potatoes suitable for frying, boiling, or baking — rich in carbohydrates and nutrients."
+    },
+    {
+      "id": 7,
+      "name": "Carrots",
+      "image": "/Images/carrots.jpg",
+      "category": "Fruits & Vegetables",
+      "unit": "500g",
+      "price": 100,
+      "description": "Crunchy, fresh carrots loaded with vitamin A — great for salads and juices."
+    },
+    {
+      "id": 8,
+      "name": "Red Chili Powder",
+      "image": "/Images/red-chili.png",
+      "category": "Spices",
+      "unit": "100g",
+      "price": 80,
+      "description": "Pure red chili powder to add a fiery touch and deep flavor to your dishes."
+    },
+    {
+      "id": 9,
+      "name": "Turmeric Powder",
+      "image": "/Images/turmeric.png",
+      "category": "Spices",
+      "unit": "100g",
+      "price": 70,
+      "description": "Finely ground turmeric with rich color and earthy aroma — known for its health benefits."
+    },
+    {
+      "id": 10,
+      "name": "Black Pepper",
+      "image": "/Images/products/black-pepper.png",
+      "category": "Spices",
+      "unit": "50g",
+      "price": 90,
+      "description": "Strong, aromatic black pepper that enhances the flavor of any meal."
+    },
+    {
+      "id": 11,
+      "name": "Coca-Cola",
+      "image": "/Images/products/cocacola.png",
+      "category": "Beverages",
+      "unit": "1.5 L",
+      "price": 180,
+      "description": "The classic Coca-Cola taste — refreshing, fizzy, and perfect for every occasion."
+    },
+    {
+      "id": 12,
+      "name": "Fresh Milk",
+      "image": "/Images/products/milk.png",
+      "category": "Dairy & Eggs",
+      "unit": "1 L",
+      "price": 210,
+      "description": "Pure, creamy milk full of protein and calcium — great for tea, coffee, or daily nutrition."
+    },
+    {
+      "id": 13,
+      "name": "Cheddar Cheese",
+      "image": "/Images/products/cheese.png",
+      "category": "Dairy & Eggs",
+      "unit": "200g",
+      "price": 350,
+      "description": "Rich, creamy cheddar cheese with a sharp taste — perfect for sandwiches, burgers, or baking."
+    },
+    {
+      "id": 14,
+      "name": "Butter",
+      "image": "/Images/products/butter.png",
+      "category": "Dairy & Eggs",
+      "unit": "100g",
+      "price": 220,
+      "description": "Smooth, golden butter made from fresh cream — ideal for spreading, cooking, and baking."
+    },
+    {
+      "id": 15,
+      "name": "Lay's Chips Classic",
+      "image": "/Images/products/lays-classic.png",
+      "category": "Snacks",
+      "unit": "50g",
+      "price": 80,
+      "description": "Crispy Lay’s Classic chips with a light, salty crunch — a timeless snack favorite."
+    },
+    {
+      "id": 16,
+      "name": "Chocolate Cookies",
+      "image": "/Images/products/cookies.png",
+      "category": "Bakery",
+      "unit": "Pack of 6",
+      "price": 250,
+      "description": "Delicious chocolate chip cookies baked to perfection — crunchy outside, soft inside."
+    },
+    {
+      "id": 17,
+      "name": "Frozen French Fries",
+      "image": "/Images/products/french-fries.png",
+      "category": "Frozen Foods",
+      "unit": "1 Kg",
+      "price": 400,
+      "description": "Crispy frozen french fries ready to fry or bake — perfect for quick snacks and meals."
+    },
+    {
+      "id": 18,
+      "name": "Notebook (A4 Size)",
+      "image": "/Images/products/notebook.png",
+      "category": "Stationary",
+      "unit": "1 piece",
+      "price": 120,
+      "description": "A4-size ruled notebook with smooth pages — great for school, college, or office use."
+    },
+    {
+      "id": 19,
+      "name": "Ballpoint Pen",
+      "image": "/Images/products/pen.png",
+      "category": "Stationary",
+      "unit": "1 piece",
+      "price": 50,
+      "description": "Smooth-writing ballpoint pen with durable ink — perfect for everyday writing."
+    },
+    {
+      "id": 20,
+      "name": "Dishwash Liquid",
+      "image": "/Images/products/dishwash.png",
+      "category": "Household",
+      "unit": "500ml",
+      "price": 180,
+      "description": "Powerful dishwashing liquid that removes grease easily and leaves dishes sparkling clean."
+    },
+    {
+      "id": 21,
+      "name": "Laundry Detergent",
+      "image": "/Images/products/detergent.png",
+      "category": "Household",
+      "unit": "1 Kg",
+      "price": 350,
+      "description": "Effective laundry detergent that removes tough stains while keeping clothes fresh and soft."
+    }
+  ],
 "slideshow":  [
         { "src": "/Images/slideShow pic 1.jpg", "alt": "Banner 1" },
         { "src": "/Images/slide show pic 2.png", "alt": "Banner 2" },

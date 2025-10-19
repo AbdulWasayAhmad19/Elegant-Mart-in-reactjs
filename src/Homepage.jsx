@@ -1,4 +1,3 @@
-
 import { useCart } from "./context/CartContext";
 import { useState, useEffect } from "react";
 import { useWishlist } from "./context/WishlistContext";
@@ -84,94 +83,110 @@ function HomePage() {
                 ))}
             </div>
 
+            {/* 🧺 CATEGORY SECTIONS */}
+            {database.categories?.map((category, index) => {
+                const categoryProducts = products.filter(
+                    (p) => p.category === category.name
+                );
 
-            {/* ULTRA FRESH SECTION */}
-            <div className="mx-2 md:mx-10 ">
-                <img
-                    src="/Images/Vegetables pic.png"
-                    alt="Vegetables"
-                    className="rounded-lg w-full transition-transform duration-300"
-                />
-            </div>
+                if (categoryProducts.length === 0) return null;
 
-            {/* PRODUCTS SECTION */}
-            <div className="rounded-lg my-6 md:my-10 bg-white mx-2 md:mx-10 flex overflow-x-auto scroll-smooth p-6 md:p-10 gap-3
-        [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                {products.slice(0, 8).map((product, i) => (
-                    <div
-                        key={i}
-                        className="group flex-none w-40 sm:w-48 md:w-56 bg-white border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md hover:border-[#dc3545] transition-all relative"
-                    >
-                        <Link to={`/product/${product.id}`}>
+                return (
+                    <section key={index} className="mb-12">
+                        {/* 🖼️ Category Banner */}
+                        <div className="mx-2 md:mx-10">
                             <img
-                                src={product.image}
-                                alt={product.name}
-                                className="w-full h-36 sm:h-40 object-contain rounded-md mb-2 transition-transform duration-200 group-hover:scale-105"
+                                src={category.banner}
+                                alt={category.name}
+                                className="rounded-lg w-full transition-transform duration-300"
                             />
-                            <p className="text-center mt-1 font-semibold text-sm sm:text-base text-gray-800 hover:text-[#dc3545] transition">
-                                {product.name}
-                            </p>
-                            <p className="text-center text-gray-500 text-xs sm:text-sm mb-2">
-                                {product.unit}
-                            </p>
-                        </Link>
-
-                        <div className="flex justify-between items-center mt-1">
-                            <span className="font-bold text-sm sm:text-base text-gray-800">
-                                Rs {product.price || "N/A"}
-                            </span>
-
-                            <div className="flex items-center gap-2 sm:gap-3">
-                                {/* ❤️ Wishlist Icon */}
-                                <button
-                                    onClick={() => {
-                                        const isInWishlist = wishlist.some(
-                                            (item) => item.id === product.id
-                                        );
-                                        if (isInWishlist) {
-                                            removeFromWishlist(product.id);
-                                        } else {
-                                            addToWishlist(product);
-                                        }
-                                    }}
-                                    className={`transition ${wishlist.some((item) => item.id === product.id)
-                                        ? "text-[#dc3545]"
-                                        : "text-gray-400 hover:text-[#dc3545]"
-                                        }`}
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill={
-                                            wishlist.some((item) => item.id === product.id)
-                                                ? "#dc3545"
-                                                : "none"
-                                        }
-                                        viewBox="0 0 24 24"
-                                        strokeWidth={1.8}
-                                        stroke="currentColor"
-                                        className="w-5 h-5 sm:w-6 sm:h-6 hover:scale-110 transition-transform"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M21 8.25c0-2.485-2.02-4.5-4.5-4.5-1.74 0-3.223.99-4 2.445A4.491 4.491 0 008.5 3.75C6.02 3.75 4 5.765 4 8.25c0 7.22 8 11.25 8 11.25s8-4.03 8-11.25z"
-                                        />
-                                    </svg>
-                                </button>
-
-                                {/* 🛒 Add to Cart Icon */}
-                                <button onClick={() => addToCart(product)}>
-                                    <img
-                                        src="/Images/add-to-cart.png"
-                                        className="w-5 sm:w-6 hover:scale-110 transition-transform"
-                                        alt="Add to cart"
-                                    />
-                                </button>
-                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+
+                        {/* 🛍️ Products for this Category */}
+                        <div
+                            className="rounded-lg my-6 md:my-10 bg-white mx-2 md:mx-10 flex overflow-x-auto scroll-smooth p-6 md:p-10 gap-3
+                            [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+                        >
+                            {categoryProducts.map((product, i) => (
+                                <div
+                                    key={i}
+                                    className="group flex-none w-40 sm:w-48 md:w-56 bg-white border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md hover:border-[#dc3545] transition-all relative"
+                                >
+                                    <Link to={`/product/${product.id}`}>
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="w-full h-36 sm:h-40 object-contain rounded-md mb-2 transition-transform duration-200 group-hover:scale-105"
+                                        />
+                                        <p className="text-center mt-1 font-semibold text-sm sm:text-base text-gray-800 hover:text-[#dc3545] transition">
+                                            {product.name}
+                                        </p>
+                                        <p className="text-center text-gray-500 text-xs sm:text-sm mb-2">
+                                            {product.unit}
+                                        </p>
+                                    </Link>
+
+                                    <div className="flex justify-between items-center mt-1">
+                                        <span className="font-bold text-sm sm:text-base text-gray-800">
+                                            Rs {product.price || "N/A"}
+                                        </span>
+
+                                        <div className="flex items-center gap-2 sm:gap-3">
+                                            {/* ❤️ Wishlist Icon */}
+                                            <button
+                                                onClick={() => {
+                                                    const isInWishlist = wishlist.some(
+                                                        (item) => item.id === product.id
+                                                    );
+                                                    if (isInWishlist) {
+                                                        removeFromWishlist(product.id);
+                                                    } else {
+                                                        addToWishlist(product);
+                                                    }
+                                                }}
+                                                className={`transition ${wishlist.some((item) => item.id === product.id)
+                                                    ? "text-[#dc3545]"
+                                                    : "text-gray-400 hover:text-[#dc3545]"
+                                                    }`}
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill={
+                                                        wishlist.some(
+                                                            (item) => item.id === product.id
+                                                        )
+                                                            ? "#dc3545"
+                                                            : "none"
+                                                    }
+                                                    viewBox="0 0 24 24"
+                                                    strokeWidth={1.8}
+                                                    stroke="currentColor"
+                                                    className="w-5 h-5 sm:w-6 sm:h-6 hover:scale-110 transition-transform"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        d="M21 8.25c0-2.485-2.02-4.5-4.5-4.5-1.74 0-3.223.99-4 2.445A4.491 4.491 0 008.5 3.75C6.02 3.75 4 5.765 4 8.25c0 7.22 8 11.25 8 11.25s8-4.03 8-11.25z"
+                                                    />
+                                                </svg>
+                                            </button>
+
+                                            {/* 🛒 Add to Cart Icon */}
+                                            <button onClick={() => addToCart(product)}>
+                                                <img
+                                                    src="/Images/add-to-cart.png"
+                                                    className="w-5 sm:w-6 hover:scale-110 transition-transform"
+                                                    alt="Add to cart"
+                                                />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                );
+            })}
         </main>
     );
 }
