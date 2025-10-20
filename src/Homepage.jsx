@@ -104,9 +104,10 @@ function HomePage() {
                             <img
                                 src={category.banner}
                                 alt={category.name}
-                                className="rounded-lg w-full transition-transform duration-300"
+                                className="rounded-lg w-full transition-transform duration-300 "
                             />
                         </div>
+
 
                         {/* 🛍️ Products for this Category */}
                         <div
