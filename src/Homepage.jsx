@@ -58,10 +58,10 @@ function HomePage() {
                 </div>
             </div>
             {/* Shop by category breaker */}
-            <div class="flex items-center justify-center my-8 ml-10">
-                <div class="flex-grow h-px bg-gray-300"></div>
-                <h2 class="mx-4 text-xl font-semibold text-gray-800">Shop by Category</h2>
-                <div class="flex-grow h-px bg-gray-300 mr-10"></div>
+            <div className="flex items-center justify-center my-8 ml-10">
+                <div className="flex-grow h-px bg-gray-300"></div>
+                <h2 className="mx-4 text-xl font-semibold text-gray-800">Shop by Category</h2>
+                <div className="flex-grow h-px bg-gray-300 mr-10"></div>
             </div>
 
             {/* 🛍️ SHOP BY CATEGORY */}
