@@ -142,8 +142,8 @@ function Navbar() {
                 </div>
             </header>
 
-            {/* ✅ Mobile Bottom Navbar */}
-            <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white/80 backdrop-blur-lg border-t border-gray-200 flex justify-around items-center py-3 md:hidden z-50">
+            {/* ✅ Compact Mobile Bottom Navbar */}
+            <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white/80 backdrop-blur-lg border-t border-gray-200 flex justify-around items-center py-2 md:hidden z-50">
                 {/* Categories */}
                 <button
                     onClick={() => setSidebarOpen(true)}
@@ -151,7 +151,7 @@ function Navbar() {
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6 mb-1"
+                        className="w-5 h-5 mb-0.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -163,7 +163,7 @@ function Navbar() {
                             d="M4 6h16M4 12h16M4 18h16"
                         />
                     </svg>
-                    <span className="text-[11px]">Categories</span>
+                    <span className="text-[10px] leading-tight">Categories</span>
                 </button>
 
                 {/* Home */}
@@ -172,9 +172,9 @@ function Navbar() {
                     className="flex flex-col items-center text-gray-600 hover:text-[#dc3545] transition-colors"
                 >
                     {icons.home && (
-                        <img src={icons.home} className="w-6 h-6 mb-1" alt="Home" />
+                        <img src={icons.home} className="w-5 h-5 mb-0.5" alt="Home" />
                     )}
-                    <span className="text-[11px]">Home</span>
+                    <span className="text-[10px] leading-tight">Home</span>
                 </Link>
 
                 {/* Search */}
@@ -184,7 +184,7 @@ function Navbar() {
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6 mb-1"
+                        className="w-5 h-5 mb-0.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -196,8 +196,9 @@ function Navbar() {
                             d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"
                         />
                     </svg>
-                    <span className="text-[11px]">Search</span>
+                    <span className="text-[10px] leading-tight">Search</span>
                 </button>
+
                 {/* Wishlist */}
                 <Link
                     to="/wishlist"
@@ -207,10 +208,10 @@ function Navbar() {
                         <img
                             src={icons.wishlist}
                             alt="Wishlist"
-                            className="w-6 h-6 mb-1 object-contain"
+                            className="w-5 h-5 mb-0.5 object-contain"
                         />
                     )}
-                    <span className="text-[11px]">Wishlist</span>
+                    <span className="text-[10px] leading-tight">Wishlist</span>
                 </Link>
 
                 {/* Cart */}
@@ -219,11 +220,11 @@ function Navbar() {
                     className="flex flex-col items-center text-gray-600 hover:text-[#dc3545] transition-colors relative"
                 >
                     {icons.cart && (
-                        <img src={icons.cart} alt="Cart" className="w-7 h-7 mb-1" />
+                        <img src={icons.cart} alt="Cart" className="w-5 h-5 mb-0.5" />
                     )}
-                    <span className="text-[11px]">Cart</span>
+                    <span className="text-[10px] leading-tight">Cart</span>
                     {cart.length > 0 && (
-                        <span className="absolute top-0 right-2 bg-[#dc3545] text-white text-[10px] px-1.5 py-0.5 rounded-full">
+                        <span className="absolute top-0 right-2 bg-[#dc3545] text-white text-[9px] px-1 py-0.5 rounded-full">
                             {cart.reduce((sum, item) => sum + item.quantity, 0)}
                         </span>
                     )}
@@ -254,7 +255,7 @@ function Navbar() {
                 </div>
 
                 <ul className="p-4 space-y-4 text-gray-700">
-                   {categories.length > 0 ? (
+                    {categories.length > 0 ? (
                         categories.map((cat) => (
                             <li key={cat.id}>
                                 <Link
@@ -274,7 +275,7 @@ function Navbar() {
 
 
 
-           {/* ✅ Search Panel (Mobile) */}
+            {/* ✅ Search Panel (Mobile) */}
             {isSearchOpen && (
                 <>
                     {/* Overlay */}
