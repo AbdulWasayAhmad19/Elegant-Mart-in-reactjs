@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Fruits & Vegetables",
       "image": "/Images/fruits-vegetables.jpg",
-      "banner": "/Images/fruits and vegetables banner.jpg"
+      "banner": "https://res.cloudinary.com/dterdl2hy/image/upload/v1761075562/my_project_images/qqhuhz47qfvlcw4stjsb.jpg"
     },
     {
       "id": 3,
@@ -248,10 +248,10 @@
     }
   ],
 "slideshow":  [
-        { "src": "/Images/slideShow pic 1.jpg", "alt": "Banner 1" },
-        { "src": "/Images/slide show pic 2.jpg", "alt": "Banner 2" },
-        { "src": "/Images/slide show img 3.jpg", "alt": "Banner 3" },
-        { "src": "/Images/side show img 4.jpg", "alt": "Banner 4" }
+        { "src": "https://res.cloudinary.com/dterdl2hy/image/upload/v1761076820/my_project_images/fmguqkbthdfzgd4xusth.jpg", "alt": "Banner 1" },
+        { "src": "https://res.cloudinary.com/dterdl2hy/image/upload/v1761076545/my_project_images/vu4eyxsllg6chesbizs3.jpg", "alt": "Banner 2" },
+        { "src": "https://res.cloudinary.com/dterdl2hy/image/upload/v1761076528/my_project_images/psinkdwjpkp47jqxtbp0.jpg", "alt": "Banner 3" },
+        { "src": "https://res.cloudinary.com/dterdl2hy/image/upload/v1761076517/my_project_images/esqtykpr72wzmoilpb3d.jpg", "alt": "Banner 4" }
 ],
 "icons": {
   "martlogo": "/Images/martlogo.jpg",

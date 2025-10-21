@@ -12,8 +12,11 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
     "chart.js": "^4.5.1",
+    "cloudinary": "^2.8.0",
     "framer-motion": "^12.23.22",
+    "fs": "^0.0.1-security",
     "lucide-react": "^0.545.0",
+    "path": "^0.12.7",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.3",
