@@ -341,6 +341,62 @@ function Navbar() {
                 </>
             )}
 
+            {/* ✅ Deliver Popup */}
+            {isDeliverOpen && (
+                <>
+                    <div
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+                        onClick={() => setDeliverOpen(false)}
+                    ></div>
+
+                    <div className="fixed inset-0 flex justify-center items-center z-50 px-4">
+                        <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative">
+                            <button
+                                onClick={() => setDeliverOpen(false)}
+                                className="absolute top-2 right-3 text-2xl text-gray-500 hover:text-[#dc3545]"
+                            >
+                                &times;
+                            </button>
+
+                            <div className="flex justify-center mb-4">
+                                {icons.martlogo ? (
+                                    <img
+                                        src={icons.martlogo}
+                                        alt="Elegant Mart Logo"
+                                        className="h-10 md:h-12 w-auto"
+                                    />
+                                ) : (
+                                    <div className="h-10 md:h-12 w-auto bg-gray-200 rounded-md" />
+                                )}
+                            </div>
+
+                            <h2 className="text-lg font-bold mb-3 text-gray-800 text-center">
+                                Select Delivery Area
+                            </h2>
+
+                            <select
+                                className="w-full border border-gray-300 rounded-full px-4 py-2 focus:ring-2 focus:ring-[#dc3545] outline-none text-gray-700"
+                                defaultValue=""
+                            >
+                                <option value="">Select Area / Sub Region</option>
+                                <option value="iqbal">Iqbal Avenue Phase 3</option>
+                                <option value="lda">LDA Avenue Phase 1</option>
+                                <option value="pd">P & D</option>
+                                <option value="nespak">Nespak Society</option>
+                                <option value="izmeer">Izmeer Society</option>
+                            </select>
+
+                            <button
+                                className="mt-4 w-full bg-[#dc3545] text-white font-semibold py-2 rounded-full hover:bg-[#b92c3a] transition-colors"
+                                onClick={() => setDeliverOpen(false)}
+                            >
+                                Save Location
+                            </button>
+                        </div>
+                    </div>
+                </>
+            )}
+
 
         </>
     );

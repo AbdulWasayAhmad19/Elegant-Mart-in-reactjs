@@ -5,7 +5,7 @@ import { useWishlist } from "./context/WishlistContext";
 
 function Cart() {
     const { cart, addToCart, removeFromCart, updateQuantity, subtotal } = useCart();
-    const { addToWishlist } = useWishlist();
+    const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
 
     const [database, setDatabase] = useState(null);
     const [relatedProducts, setRelatedProducts] = useState([]);
@@ -35,7 +35,6 @@ function Cart() {
             })
             .catch((err) => console.error("Error loading products:", err));
     }, [cart]);
-
 
     // Wait for database to load
     if (!database) {
@@ -171,72 +170,86 @@ function Cart() {
 
                     <section className="mt-12">
                         <div className="flex overflow-x-auto gap-3 sm:gap-4 md:gap-5 rounded-lg bg-white p-4 sm:p-6 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                            {relatedProducts.map((product) => (
-                                <div
-                                    key={product.id}
-                                    className="group flex-none w-40 sm:w-48 md:w-56 bg-white border border-gray-200 rounded-xl p-3 sm:p-4 shadow-sm hover:shadow-md hover:border-[#dc3545] transition-all relative"
-                                >
-                                    {/* 🥬 Clickable Image + Info */}
-                                    <Link to={`/product/${product.id}`}>
-                                        <img
-                                            src={product.image}
-                                            alt={product.name}
-                                            className="w-full h-36 sm:h-44 md:h-48 object-contain rounded-md mb-2 sm:mb-3 transition-transform duration-200 group-hover:scale-105"
-                                        />
-                                        <p className="text-center mt-1 font-semibold text-sm sm:text-base md:text-lg text-gray-800 hover:text-[#dc3545] transition">
-                                            {product.name}
-                                        </p>
-                                        <p className="text-center text-gray-500 text-xs sm:text-sm mb-2 sm:mb-3">
-                                            {product.unit}
-                                        </p>
-                                    </Link>
+                            {relatedProducts.map((product, i) => {
+                                const isInWishlist = wishlist.some(
+                                    (item) => item.id === product.id
+                                );
+                                const cartItem = cart.find(
+                                    (item) => item.id === product.id
+                                );
+                                const quantity = cartItem ? cartItem.quantity : 0;
 
-                                    {/* 💰 Price + Icons */}
-                                    <div className="flex justify-between items-center mt-1">
-                                        <span className="font-bold text-sm sm:text-base text-gray-800">
-                                            Rs {product.price}
-                                        </span>
-
-                                        <div className="flex items-center gap-2 sm:gap-3">
-                                            {/* ❤️ Wishlist Icon */}
-                                            <button
-                                                onClick={() => addToWishlist(product)}
-                                                className="text-gray-400 hover:text-[#dc3545] transition"
+                                return (
+                                    <div
+                                        key={i}
+                                        className="relative flex-none w-40 sm:w-48 md:w-56 bg-white border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md hover:border-[#dc3545] transition-all"
+                                    >
+                                        {/* ❤️ Wishlist Icon */}
+                                        <button
+                                            onClick={() => {
+                                                isInWishlist
+                                                    ? removeFromWishlist(product.id)
+                                                    : addToWishlist(product);
+                                            }}
+                                            className={`absolute top-2 right-2 z-10 transition ${isInWishlist
+                                                ? "text-[#dc3545]"
+                                                : "text-gray-400 hover:text-[#dc3545]"
+                                                }`}
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill={isInWishlist ? "#dc3545" : "none"}
+                                                viewBox="0 0 24 24"
+                                                strokeWidth={1.8}
+                                                stroke="currentColor"
+                                                className="w-6 h-6"
                                             >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    strokeWidth={1.8}
-                                                    stroke="currentColor"
-                                                    className="w-5 h-5 sm:w-6 sm:h-6 hover:fill-[#dc3545] hover:stroke-[#dc3545] transition"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        d="M21 8.25c0-2.485-2.02-4.5-4.5-4.5-1.74 0-3.223.99-4 2.445A4.491 4.491 0 008.5 3.75C6.02 3.75 4 5.765 4 8.25c0 7.22 8 11.25 8 11.25s8-4.03 8-11.25z"
-                                                    />
-                                                </svg>
-                                            </button>
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M21 8.25c0-2.485-2.02-4.5-4.5-4.5-1.74 0-3.223.99-4 2.445A4.491 4.491 0 008.5 3.75C6.02 3.75 4 5.765 4 8.25c0 7.22 8 11.25 8 11.25s8-4.03 8-11.25z"
+                                                />
+                                            </svg>
+                                        </button>
 
-                                            {/* 🛒 Add to Cart Icon */}
-                                            <button onClick={() => addToCart({ ...product, quantity: 1 })}>
+                                        {/* 🖼️ Product Image + Info */}
+                                        <Link to={`/product/${product.id}`}>
+                                            <img
+                                                src={product.image}
+                                                alt={product.name}
+                                                className="w-full h-36 sm:h-40 object-contain rounded-md mb-2 transition-transform duration-200 hover:scale-105"
+                                            />
+                                            <p className="text-center mt-1 font-semibold text-sm sm:text-base text-gray-800 hover:text-[#dc3545] transition">
+                                                {product.name}
+                                            </p>
+                                            <p className="text-center text-gray-500 text-xs sm:text-sm mb-2">
+                                                {product.unit}
+                                            </p>
+                                        </Link>
+
+                                        {/* 🛒 Simple Add to Cart */}
+                                        <div className="flex justify-between items-center mt-1">
+                                            <span className="font-bold text-sm sm:text-base text-gray-800">
+                                                Rs {product.price || "N/A"}
+                                            </span>
+                                            <button
+                                                onClick={() => addToCart(product)}
+                                                className="p-2 text-white rounded-full hover:scale-110 transition"
+                                            >
                                                 <img
                                                     src="/Images/add-to-cart.png"
                                                     alt="Add to cart"
-                                                    className="w-5 sm:w-6 hover:scale-110 transition-transform"
+                                                    className="w-5 sm:w-6"
                                                 />
                                             </button>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </section>
-
                 </div>
             )}
-
         </main>
     );
 }

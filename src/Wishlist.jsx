@@ -1,11 +1,11 @@
-
 import React, { useEffect, useState } from "react";
 import { useWishlist } from "./context/WishlistContext";
 import { useCart } from "./context/CartContext";
+import { Link } from "react-router-dom";
 
 function Wishlist() {
-  const { wishlist, removeFromWishlist } = useWishlist();
-  const { addToCart } = useCart();
+  const { wishlist, removeFromWishlist, addToWishlist } = useWishlist();
+  const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
 
   const [database, setDatabase] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -24,17 +24,16 @@ function Wishlist() {
   // ✅ Filter related products to exclude items already in wishlist
   useEffect(() => {
     if (!database) return;
-    // ✅ Get the categories of items currently in the wishlist
+
     const wishlistCategories = wishlist.map((w) => w.category);
 
-    // ✅ Filter products that match those categories but aren’t in the wishlist
     const filtered = database.products.filter(
       (item) =>
         wishlistCategories.includes(item.category) &&
         !wishlist.some((w) => w.id === item.id)
     );
 
-    setRelatedProducts(filtered.slice(0, 8)); // limit to 8
+    setRelatedProducts(filtered.slice(0, 8));
   }, [database, wishlist]);
 
   // ⏳ Loading state
@@ -60,101 +59,206 @@ function Wishlist() {
     );
   }
 
-  // 💖 Wishlist Page
   return (
     <div className="mt-28 mb-0 px-4 md:px-10 min-h-screen">
       <h2 className="text-2xl font-bold mb-6 text-[#dc3545]">❤️ My Wishlist</h2>
 
-      {/* Wishlist Grid */}
+      {/* 💖 Wishlist Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-12">
-        {wishlist.map((product) => (
-          <div
-            key={product.id}
-            className="group bg-white border border-gray-200 rounded-xl p-4 shadow hover:border-[#dc3545] transition relative"
-          >
-            {/* Remove from Wishlist */}
-            <button
-              onClick={() => removeFromWishlist(product.id)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-[#dc3545] transition"
+        {wishlist.map((product) => {
+          const isInWishlist = wishlist.some((item) => item.id === product.id);
+          const cartItem = cart.find((item) => item.id === product.id);
+          const quantity = cartItem ? cartItem.quantity : 0;
+
+          return (
+            <div
+              key={product.id}
+              className="relative flex-none bg-white border border-gray-200 rounded-xl p-4 shadow hover:shadow-md hover:border-[#dc3545] transition-all"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            {/* Product Image */}
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-40 sm:h-52 object-contain rounded-lg mb-3"
-            />
-
-            {/* Product Info */}
-            <p className="text-center mt-2 font-semibold text-base sm:text-lg">{product.name}</p>
-            <p className="text-center text-gray-500 text-sm mb-3">{product.unit}</p>
-
-            {/* Price + Add to Cart */}
-            <div className="flex justify-between items-center">
-              <span className="font-bold text-lg text-gray-800">Rs {product.price}</span>
+              {/* ❤️ Remove from Wishlist */}
               <button
-                onClick={() =>
-                  addToCart({
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    unit: product.unit,
-                    image: product.image,
-                    quantity: 1,
-                  })
-                }
+                onClick={() => removeFromWishlist(product.id)}
+                className="absolute top-3 right-3 text-gray-400 hover:text-[#dc3545] transition"
               >
-                <img
-                  src={database.icons?.cart || "/Images/add-to-cart.png"}
-                  alt="Add to cart"
-                  className="w-7 hover:scale-110 transition-transform"
-                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
-            </div>
-          </div>
-        ))}
-      </div>
 
-      {/* Related Products */}
-      {relatedProducts.length > 0 && (
-        <div className="mt-10 pb-10">
-          <h3 className="text-xl font-semibold mb-4 text-[#dc3545]">Related Products</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {relatedProducts.map((item) => (
-              <div
-                key={item.id}
-                className="group bg-white border border-gray-200 rounded-xl p-4 shadow hover:border-[#dc3545] transition"
-              >
+              {/* 🖼️ Product Image */}
+              <Link to={`/product/${product.id}`}>
                 <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-40 sm:h-48 object-contain mb-3 rounded-lg"
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-36 sm:h-40 object-contain rounded-md mb-2 transition-transform duration-200 hover:scale-105"
                 />
-                <p className="text-center mt-1 font-semibold text-base sm:text-lg">{item.name}</p>
-                <p className="text-center text-gray-500 text-sm mb-3">{item.unit}</p>
-                <div className="flex justify-between items-center">
-                  <span className="font-bold text-lg text-gray-800">Rs {item.price}</span>
-                  <button onClick={() => addToCart({ ...item, quantity: 1 })}>
+                <p className="text-center mt-2 font-semibold text-sm sm:text-base text-gray-800 hover:text-[#dc3545] transition">
+                  {product.name}
+                </p>
+                <p className="text-center text-gray-500 text-xs sm:text-sm mb-2">
+                  {product.unit}
+                </p>
+              </Link>
+
+              {/* 🛒 Cart Section (same as HomePage) */}
+              <div className="flex justify-between items-center mt-1">
+                <span className="font-bold text-sm sm:text-base text-gray-800">
+                  Rs {product.price || "N/A"}
+                </span>
+
+                <div className="relative">
+                  <button
+                    onClick={() => addToCart(product)}
+                    className={`relative transition-transform duration-300 ${quantity > 0 ? "-translate-x-1" : "translate-x-0"
+                      }`}
+                  >
                     <img
-                      src={database.icons?.cart || "/Images/add-to-cart.png"}
+                      src={"/Images/add-to-cart.png"}
                       alt="Add to cart"
-                      className="w-7 hover:scale-110 transition-transform"
+                      className="w-5 sm:w-6 transition-transform duration-300"
                     />
+
+                    {/* 🔴 Quantity Badge */}
+                    {quantity > 0 && (
+                      <span className="absolute -top-2 -right-2 bg-[#dc3545] text-white text-[10px] font-semibold rounded-full px-1.5 py-0.5 shadow-md">
+                        {quantity}
+                      </span>
+                    )}
                   </button>
+
+                  {/* ➖ Remove button */}
+                  {quantity > 0 && (
+                    <button
+                      onClick={() => {
+                        if (quantity === 1) {
+                          removeFromCart(product.name);
+                        } else {
+                          updateQuantity(product.name, -1);
+                        }
+                      }}
+                      className="absolute -left-5 top-1/2 -translate-y-1/2 text-[#dc3545] text-lg font-bold"
+                    >
+                      −
+                    </button>
+                  )}
                 </div>
               </div>
-            ))}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* 🔁 Related Products */}
+      {relatedProducts.length > 0 && (
+        <div className="mt-10 pb-10">
+          <h3 className="text-xl font-semibold mb-4 text-[#dc3545]">
+            Related Products
+          </h3>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {relatedProducts.map((item) => {
+              const isInWishlist = wishlist.some((w) => w.id === item.id);
+              const cartItem = cart.find((c) => c.id === item.id);
+              const quantity = cartItem ? cartItem.quantity : 0;
+
+              return (
+                <div
+                  key={item.id}
+                  className="relative flex-none bg-white border border-gray-200 rounded-xl p-4 shadow hover:shadow-md hover:border-[#dc3545] transition-all"
+                >
+                  {/* ❤️ Wishlist Icon */}
+                  <button
+                    onClick={() => {
+                      isInWishlist
+                        ? removeFromWishlist(item.id)
+                        : addToWishlist(item);
+                    }}
+                    className={`absolute top-2 right-2 z-10 transition ${isInWishlist
+                      ? "text-[#dc3545]"
+                      : "text-gray-400 hover:text-[#dc3545]"
+                      }`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill={isInWishlist ? "#dc3545" : "none"}
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.8}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21 8.25c0-2.485-2.02-4.5-4.5-4.5-1.74 0-3.223.99-4 2.445A4.491 4.491 0 008.5 3.75C6.02 3.75 4 5.765 4 8.25c0 7.22 8 11.25 8 11.25s8-4.03 8-11.25z"
+                      />
+                    </svg>
+                  </button>
+
+                  <Link to={`/product/${item.id}`}>
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-36 sm:h-40 object-contain rounded-md mb-2 transition-transform duration-200 hover:scale-105"
+                    />
+                    <p className="text-center mt-1 font-semibold text-sm sm:text-base text-gray-800 hover:text-[#dc3545] transition">
+                      {item.name}
+                    </p>
+                    <p className="text-center text-gray-500 text-xs sm:text-sm mb-2">
+                      {item.unit}
+                    </p>
+                  </Link>
+
+                  {/* 🛒 Cart Section (same as HomePage) */}
+                  <div className="flex justify-between items-center mt-1">
+                    <span className="font-bold text-sm sm:text-base text-gray-800">
+                      Rs {item.price || "N/A"}
+                    </span>
+
+                    <div className="relative">
+                      <button
+                        onClick={() => addToCart(item)}
+                        className={`relative transition-transform duration-300 ${quantity > 0 ? "-translate-x-1" : "translate-x-0"
+                          }`}
+                      >
+                        <img
+                          src={"/Images/add-to-cart.png"}
+                          alt="Add to cart"
+                          className="w-5 sm:w-6 transition-transform duration-300"
+                        />
+
+                        {quantity > 0 && (
+                          <span className="absolute -top-2 -right-2 bg-[#dc3545] text-white text-[10px] font-semibold rounded-full px-1.5 py-0.5 shadow-md">
+                            {quantity}
+                          </span>
+                        )}
+                      </button>
+
+                      {quantity > 0 && (
+                        <button
+                          onClick={() => {
+                            if (quantity === 1) {
+                              removeFromCart(item.name);
+                            } else {
+                              updateQuantity(item.name, -1);
+                            }
+                          }}
+                          className="absolute -left-5 top-1/2 -translate-y-1/2 text-[#dc3545] text-lg font-bold"
+                        >
+                          −
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
