@@ -1,3 +1,4 @@
+
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useCart } from "./context/CartContext";
@@ -127,14 +128,15 @@ function ProductPage() {
                 </div>
             </div>
 
-            {/* ✅ Related Products */}
+            {/* ✅ Related Products — same style as All-Products grid */}
             {relatedProducts.length > 0 && (
                 <section className="mt-12">
-                    <h2 className="text-lg sm:text-xl font-bold mb-6">
+                    <h2 className="text-lg sm:text-xl font-bold mb-6 text-center">
                         You May Also Like
                     </h2>
 
-                    <div className="flex overflow-x-auto gap-3 sm:gap-4 md:gap-5 rounded-lg bg-white p-4 sm:p-6 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    {/* 🧱 Product Grid (same as All-Products) */}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5">
                         {relatedProducts.map((item) => {
                             const isInWishlist = wishlist.some((w) => w.id === item.id);
                             const cartItem = cart.find((c) => c.id === item.id);
@@ -143,7 +145,7 @@ function ProductPage() {
                             return (
                                 <div
                                     key={item.id}
-                                    className="relative flex-none w-40 sm:w-48 md:w-56 bg-white border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md hover:border-[#dc3545] transition-all"
+                                    className="group bg-white border border-gray-200 rounded-xl p-3 sm:p-4 shadow-sm hover:shadow-md hover:border-[#dc3545] transition-all relative"
                                 >
                                     {/* ❤️ Wishlist Icon */}
                                     <button
@@ -173,7 +175,7 @@ function ProductPage() {
                                         </svg>
                                     </button>
 
-                                    {/* 🥬 Clickable Image + Info */}
+                                    {/* 🥬 Product Image + Info */}
                                     <Link to={`/product/${item.id}`}>
                                         <img
                                             src={item.image}
@@ -184,18 +186,18 @@ function ProductPage() {
                                             {item.name}
                                         </p>
                                         <p className="text-center text-gray-500 text-xs sm:text-sm mb-2 sm:mb-3">
-                                            {item.unit}
+                                            {item.size || item.unit}
                                         </p>
                                     </Link>
 
                                     {/* 🛒 Cart Section */}
                                     <div className="flex justify-between items-center mt-1">
                                         <span className="font-bold text-sm sm:text-base text-gray-800">
-                                            Rs {item.price}
+                                            Rs {item.price || "N/A"}
                                         </span>
 
                                         <div className="relative">
-                                            {/* Add to Cart Button */}
+                                            {/* Add to Cart */}
                                             <button
                                                 onClick={() => addToCart(item)}
                                                 className={`relative transition-transform duration-300 ${quantity > 0 ? "-translate-x-1" : "translate-x-0"
@@ -207,7 +209,7 @@ function ProductPage() {
                                                     className="w-5 sm:w-6 transition-transform duration-300"
                                                 />
 
-                                                {/* 🔴 Quantity Badge */}
+                                                {/* Quantity Badge */}
                                                 {quantity > 0 && (
                                                     <span className="absolute -top-2 -right-2 bg-[#dc3545] text-white text-[10px] font-semibold rounded-full px-1.5 py-0.5 shadow-md">
                                                         {quantity}
