@@ -3,7 +3,7 @@
 
 import React, { useState } from "react";
 import { useCart } from "./context/CartContext";
-
+import { Link } from "react-router-dom";
 function Checkout() {
   const { cart } = useCart(); // ✅ Get cart items from context
   const [paymentMethod, setPaymentMethod] = useState("cash");
@@ -188,12 +188,12 @@ function Checkout() {
                 Place Order
               </button>
 
-              <a
-                href="/cart"
+              <Link
+                to="/cart"
                 className="block mt-3 text-black hover:underline text-center"
               >
                 ← Back to Cart
-              </a>
+              </Link>
             </div>
           </div>
         </div>
